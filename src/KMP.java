@@ -7,14 +7,16 @@ public class KMP {
 	private static void kmpSearch()
 	{
 		String text, pattern;
+		int textLength, patternLength = in.nextInt();
 		pattern = in.next();
 		text = in.next();
-		int textLength = text.length(), patternLength = pattern.length();
-		for (int actualTextPosition = 0; actualTextPosition + patternLength < textLength; actualTextPosition++)
+		textLength = text.length();
+		
+		for (int actualTextPosition = 0; actualTextPosition + patternLength <= textLength; actualTextPosition++)
 		{
 			for (int actualPatternPosition = 0; actualPatternPosition < patternLength; actualPatternPosition++)
 			{
-				if (pattern.charAt(actualPatternPosition) != text.charAt(actualTextPosition)) break;
+				if (pattern.charAt(actualPatternPosition) != text.charAt(actualPatternPosition + actualTextPosition)) break;
 				else if (actualPatternPosition == patternLength - 1)
 				{
 					System.out.println(actualTextPosition);
@@ -26,7 +28,6 @@ public class KMP {
 	
 	public static void main(String[] args)
 	{
-		// TODO Auto-generated method stub
 		in = new Scanner(System.in);
 		int testNumber;
 		testNumber = in.nextInt();
